@@ -30,3 +30,16 @@ const levenshteinDistance = (str1, str2) => {
   };
 
 console.log(levenshteinDistance('abc','yabd'));
+
+const maxSubsetSumNoAdjacent = (arr) => {
+    if (arr.length === 0) return 0;
+    if (arr.length === 1) return arr[0];
+    let second = arr[0];
+    let first = Math.max(arr[0], arr[1]);
+    for (let i = 2; i < arr.length; i++) {
+      const curr = Math.max(maxSums[i - 1], maxSums[i - 2] + arr[i]);
+      second = first;
+      first = curr;
+    }
+    // return first;
+  }
