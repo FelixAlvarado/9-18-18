@@ -64,3 +64,27 @@ var PredictTheWinner = function(nums, p1 = 0, p2 = 0, turn = false) {
         return PredictTheWinner(nums.slice(0,nums.length - 1), p1, p2, turn);
     }
 };
+
+function PredictTheWinner2(nums) {
+    if (nums === null) { return true; }
+    let n = nums.length;
+    if (n === 0 || n === 1) { return true; } 
+    let dp = new Array(n);
+    for (let i = n - 1; i >= 0; i--) {
+        console.log('this is i', i);
+        for (let j = i; j < n; j++) {
+            if (i === j) {
+                dp[i] = nums[i];
+            } else {
+                dp[j] = Math.max(nums[i] - dp[j], nums[j] - dp[j - 1]);
+            }
+            console.log('this is j', j);
+            console.log('this is nums', nums);
+            console.log('the dp is', dp);
+        }
+    }
+    return dp[n - 1] >= 0;
+}
+
+let arr = [2,10,7];
+PredictTheWinner2(arr);
